@@ -37,6 +37,9 @@ Maze.prototype.i = function(x, y)
 
 Maze.prototype.generate = function(w, h)
 {
+    w = w * 2 - 1;
+    h = h * 2 - 1;
+
   this.w = w;
   this.h = h;
   this.arr = new Array(w * h);
@@ -189,6 +192,21 @@ Maze.prototype.draw = function()
       context.fillRect(x * cellOffsetX, y * cellOffsetY, cellW, cellH);
     }
   }
+
+
+  var from = {
+    x: 0,
+    y: 0
+  };
+  var to = {
+    x: this.w - 1,
+    y: this.h - 1
+  };
+
+  context.fillStyle = '#0f0';
+  context.fillRect(0, 0, cellW, cellH);
+  context.fillStyle = '#f00';
+  context.fillRect(to.x * cellOffsetX, to.y * cellOffsetY, cellW, cellH);
 }
 
 Maze.prototype.drawSolution = function()
@@ -206,11 +224,6 @@ Maze.prototype.drawSolution = function()
     x: this.w - 1,
     y: this.h - 1
   };
-
-  context.fillStyle = '#0f0';
-  context.fillRect(0, 0, cellW, cellH);
-  context.fillStyle = '#f00';
-  context.fillRect(to.x * cellOffsetX, to.y * cellOffsetY, cellW, cellH);
 
   var path = this.dijkstra(from, to);
   if (path)
