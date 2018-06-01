@@ -226,6 +226,7 @@ Maze.prototype.drawSolution = function()
   };
 
   var path = this.dijkstra(from, to);
+  var solveMs = 3000;
   if (path)
   {
     context.strokeStyle = '#f00';
@@ -236,14 +237,19 @@ Maze.prototype.drawSolution = function()
     );
     for (var i = 0; i < path.length; ++i)
     {
-      //context.fillRect(path[i].x * cellOffsetX, path[i].y * cellOffsetY, cellW, cellH);
-      context.lineTo(
-        path[i].x * cellOffsetX + cellW * 0.5,
-        path[i].y * cellOffsetY + cellH * 0.5
-      );
+        var x = path[i].x * cellOffsetX + cellW * 0.5;
+        var y = path[i].y * cellOffsetY + cellH * 0.5;
+        drawTo(i * solveMs / path.length, x, y);
     }
-    context.stroke();
   }
+}
+
+function drawTo(sleep, x, y) {
+    setTimeout(() => {
+        //context.fillRect(path[i].x * cellOffsetX, path[i].y * cellOffsetY, cellW, cellH);
+        context.lineTo(x,y);
+        context.stroke();
+    }, sleep);
 }
 
 var maze = new Maze();
