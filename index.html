@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+
+<label>
+  Width: <input id="width" type="number" value="51" onchange="generateAndDrawMaze()" />
+</label>
+
+<label>
+  Height: <input id="height" type="number" value="53" onchange="generateAndDrawMaze()" />
+</label>
+
+<button onclick="drawMaze()">Draw</button>
+<button onclick="drawMazeSolution()">Draw Solution</button>
+
+<canvas width="800" height="600"></canvas>
+
+<script src="index.js"></script>
+</body>
+</html>
